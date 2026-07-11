@@ -99,6 +99,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B71117963002C0F400245273 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B71117973002C15D00245273 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		B721C951300293EC00C58487 = {
 			isa = PBXGroup;
 			children = (
@@ -161,8 +175,7 @@
 				B721C95D300293EC00C58487 /* DineFlowApp.swift */,
 				B721C9883002943100C58487 /* Core */,
 				B721C9913002948F00C58487 /* Features */,
-				B721C99C3002954100C58487 /* Resources */,
-				B721C99D3002955100C58487 /* Services */,
+				B71117973002C15D00245273 /* Resources */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -170,11 +183,12 @@
 		B721C9883002943100C58487 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B721C9B630029D0E00C58487 /* DesignSystem */,
-				B721C9A33002963000C58487 /* Navigation */,
-				B721C9A23002962500C58487 /* Extensions */,
 				B721C9A13002961B00C58487 /* Components */,
+				B721C9B630029D0E00C58487 /* DesignSystem */,
+				B721C9A23002962500C58487 /* Extensions */,
+				B721C9A33002963000C58487 /* Navigation */,
 				B721C99E300295F600C58487 /* Theme */,
+				B71117963002C0F400245273 /* Utilities */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -192,7 +206,6 @@
 			children = (
 				B721C99A3002950B00C58487 /* Components */,
 				B721C9AA3002978A00C58487 /* Models */,
-				B721C9AB3002979500C58487 /* Repositories */,
 				B721C998300294E500C58487 /* ViewModels */,
 				B721C9993002950000C58487 /* Views */,
 			);
@@ -221,20 +234,6 @@
 				B721C9A8300296C900C58487 /* TableCard.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		B721C99C3002954100C58487 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		B721C99D3002955100C58487 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		B721C99E300295F600C58487 /* Theme */ = {
@@ -278,13 +277,6 @@
 				B721C9BF30029E5400C58487 /* RestaurantTable.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B721C9AB3002979500C58487 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		B721C9AE3002980800C58487 /* Docs */ = {
