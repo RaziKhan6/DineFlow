@@ -20,7 +20,12 @@ struct TablesView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: AppSpacing.large) {
                     ForEach(viewModel.tables) { table in
-                        TableCard(table: table)
+                        NavigationLink {
+                            OrderView(table: table)
+                        } label: {
+                            TableCard(table: table)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding(AppSpacing.large)

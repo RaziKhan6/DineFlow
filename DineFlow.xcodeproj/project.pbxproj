@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B711179E3002C3F500245273 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B711179D3002C3F500245273 /* OrderView.swift */; };
 		B721C95E300293EC00C58487 /* DineFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95D300293EC00C58487 /* DineFlowApp.swift */; };
 		B721C960300293EC00C58487 /* TablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95F300293EC00C58487 /* TablesView.swift */; };
 		B721C962300293ED00C58487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B721C961300293ED00C58487 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B711179D3002C3F500245273 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		B721C95A300293EC00C58487 /* DineFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DineFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B721C95D300293EC00C58487 /* DineFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineFlowApp.swift; sourceTree = "<group>"; };
 		B721C95F300293EC00C58487 /* TablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,46 @@
 			children = (
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B71117983002C35B00245273 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				B71117993002C36900245273 /* Components */,
+				B711179A3002C37300245273 /* Models */,
+				B711179B3002C38B00245273 /* ViewModels */,
+				B711179C3002C39A00245273 /* Views */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		B71117993002C36900245273 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B711179A3002C37300245273 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B711179B3002C38B00245273 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B711179C3002C39A00245273 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B711179D3002C3F500245273 /* OrderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B721C951300293EC00C58487 = {
@@ -196,6 +238,7 @@
 		B721C9913002948F00C58487 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				B71117983002C35B00245273 /* Orders */,
 				B721C993300294BA00C58487 /* Tables */,
 			);
 			path = Features;
@@ -430,6 +473,7 @@
 				B721C9A03002960300C58487 /* AppSpacing.swift in Sources */,
 				B721C9C23002B10C00C58487 /* TablesViewModel.swift in Sources */,
 				B721C9B830029D3400C58487 /* PrimaryButton.swift in Sources */,
+				B711179E3002C3F500245273 /* OrderView.swift in Sources */,
 				B721C960300293EC00C58487 /* TablesView.swift in Sources */,
 				B721C9BC30029D4F00C58487 /* EmptyState.swift in Sources */,
 				B721C9C030029E5400C58487 /* RestaurantTable.swift in Sources */,
