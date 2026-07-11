@@ -11,7 +11,7 @@ struct TableCard: View {
 
     // MARK: - Properties
 
-    let table: RestaurantTable
+    let table: Table
 
     // MARK: - Body
 
@@ -84,7 +84,7 @@ struct TableCard: View {
 
 #Preview {
     TableCard(
-        table: RestaurantTable(
+        table: Table(
             number: 7,
             guestCount: 4,
             totalAmount: 1280,

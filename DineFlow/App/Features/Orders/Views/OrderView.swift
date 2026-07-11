@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrderView: View {
 
-    let table: RestaurantTable
+    let table: Table
 
     var body: some View {
         VStack(spacing: 24) {
@@ -35,7 +35,7 @@ struct OrderView: View {
 #Preview {
     NavigationStack {
         OrderView(
-            table: RestaurantTable(
+            table: Table(
                 number: 7,
                 guestCount: 4,
                 totalAmount: 1280,

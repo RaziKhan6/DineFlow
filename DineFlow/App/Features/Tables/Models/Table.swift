@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RestaurantTable: Identifiable, Hashable {
+struct Table: Identifiable, Hashable {
     let id: UUID
     let number: Int
     let guestCount: Int
