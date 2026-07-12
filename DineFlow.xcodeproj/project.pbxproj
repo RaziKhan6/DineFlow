@@ -15,6 +15,14 @@
 		B71117B23002C85500245273 /* SampleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117B13002C85500245273 /* SampleMenu.swift */; };
 		B71117B43002C87600245273 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117B33002C87600245273 /* MenuViewModel.swift */; };
 		B71117B63002C88500245273 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117B53002C88500245273 /* MenuView.swift */; };
+		B71117B930035DCD00245273 /* CategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117B830035DCD00245273 /* CategoryChip.swift */; };
+		B71117BB30035DFF00245273 /* CategoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117BA30035DFF00245273 /* CategoryBar.swift */; };
+		B71117BD30035EAE00245273 /* VegIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117BC30035EAE00245273 /* VegIndicator.swift */; };
+		B71117BF30035EE600245273 /* MenuItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117BE30035EE600245273 /* MenuItemRow.swift */; };
+		B71117C130035F1100245273 /* MenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117C030035F1100245273 /* MenuList.swift */; };
+		B71117C33003608C00245273 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117C23003608C00245273 /* Utilities.swift */; };
+		B71117C5300361E500245273 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117C4300361E500245273 /* Order.swift */; };
+		B71117C7300362B300245273 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117C6300362B300245273 /* OrderViewModel.swift */; };
 		B721C95E300293EC00C58487 /* DineFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95D300293EC00C58487 /* DineFlowApp.swift */; };
 		B721C960300293EC00C58487 /* TablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95F300293EC00C58487 /* TablesView.swift */; };
 		B721C962300293ED00C58487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B721C961300293ED00C58487 /* Assets.xcassets */; };
@@ -64,6 +72,14 @@
 		B71117B13002C85500245273 /* SampleMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMenu.swift; sourceTree = "<group>"; };
 		B71117B33002C87600245273 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		B71117B53002C88500245273 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		B71117B830035DCD00245273 /* CategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChip.swift; sourceTree = "<group>"; };
+		B71117BA30035DFF00245273 /* CategoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBar.swift; sourceTree = "<group>"; };
+		B71117BC30035EAE00245273 /* VegIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegIndicator.swift; sourceTree = "<group>"; };
+		B71117BE30035EE600245273 /* MenuItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemRow.swift; sourceTree = "<group>"; };
+		B71117C030035F1100245273 /* MenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuList.swift; sourceTree = "<group>"; };
+		B71117C23003608C00245273 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B71117C4300361E500245273 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		B71117C6300362B300245273 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		B721C95A300293EC00C58487 /* DineFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DineFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B721C95D300293EC00C58487 /* DineFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineFlowApp.swift; sourceTree = "<group>"; };
 		B721C95F300293EC00C58487 /* TablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesView.swift; sourceTree = "<group>"; };
@@ -118,6 +134,7 @@
 		B71117963002C0F400245273 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B71117C23003608C00245273 /* Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -152,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				B711179F3002C4FD00245273 /* MenuCategory.swift */,
+				B71117C4300361E500245273 /* Order.swift */,
 				B71117A33002C51500245273 /* OrderItem.swift */,
 			);
 			path = Models;
@@ -160,6 +178,7 @@
 		B711179B3002C38B00245273 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B71117C6300362B300245273 /* OrderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -182,6 +201,7 @@
 		B71117A83002C61F00245273 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				B71117B730035DBF00245273 /* Components */,
 				B71117A93002C64100245273 /* Data */,
 				B71117AA3002C64A00245273 /* Models */,
 				B71117AB3002C65600245273 /* ViewModels */,
@@ -221,6 +241,17 @@
 				B71117B53002C88500245273 /* MenuView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B71117B730035DBF00245273 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B71117B830035DCD00245273 /* CategoryChip.swift */,
+				B71117BA30035DFF00245273 /* CategoryBar.swift */,
+				B71117BE30035EE600245273 /* MenuItemRow.swift */,
+				B71117C030035F1100245273 /* MenuList.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		B721C951300293EC00C58487 = {
@@ -359,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				B721C9B730029D3400C58487 /* PrimaryButton.swift */,
+				B71117BC30035EAE00245273 /* VegIndicator.swift */,
 				B721C9B330029C9300C58487 /* StatusBadge.swift */,
 				B721C9B930029D4300C58487 /* SearchBar.swift */,
 				B721C9BB30029D4F00C58487 /* EmptyState.swift */,
@@ -547,6 +579,8 @@
 				B711179E3002C3F500245273 /* OrderView.swift in Sources */,
 				B71117A03002C4FD00245273 /* MenuCategory.swift in Sources */,
 				B71117B63002C88500245273 /* MenuView.swift in Sources */,
+				B71117B930035DCD00245273 /* CategoryChip.swift in Sources */,
+				B71117C5300361E500245273 /* Order.swift in Sources */,
 				B721C960300293EC00C58487 /* TablesView.swift in Sources */,
 				B721C9BC30029D4F00C58487 /* EmptyState.swift in Sources */,
 				B721C9C030029E5400C58487 /* Table.swift in Sources */,
@@ -556,13 +590,19 @@
 				B71117B23002C85500245273 /* SampleMenu.swift in Sources */,
 				B721C9C63002B72000C58487 /* View+CardStyle.swift in Sources */,
 				B721C9A53002966100C58487 /* AppRadius.swift in Sources */,
+				B71117C33003608C00245273 /* Utilities.swift in Sources */,
 				B721C9B430029C9300C58487 /* StatusBadge.swift in Sources */,
 				B721C9C43002B6C800C58487 /* View+Shadow.swift in Sources */,
 				B721C9BE30029E1A00C58487 /* TableStatus.swift in Sources */,
+				B71117C7300362B300245273 /* OrderViewModel.swift in Sources */,
 				B721C9B030029C4A00C58487 /* AppTypography.swift in Sources */,
 				B71117A43002C51500245273 /* OrderItem.swift in Sources */,
+				B71117C130035F1100245273 /* MenuList.swift in Sources */,
 				B721C9B230029C6E00C58487 /* AppColor.swift in Sources */,
+				B71117BF30035EE600245273 /* MenuItemRow.swift in Sources */,
 				B71117AE3002C82400245273 /* Category.swift in Sources */,
+				B71117BD30035EAE00245273 /* VegIndicator.swift in Sources */,
+				B71117BB30035DFF00245273 /* CategoryBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

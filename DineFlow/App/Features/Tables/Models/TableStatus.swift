@@ -7,10 +7,25 @@
 
 import SwiftUI
 
-enum TableStatus: String, CaseIterable {
-    case available = "Available"
-    case active = "Active"
-    case preparing = "Preparing"
-    case billing = "Billing"
-    case reserved = "Reserved"
+enum TableStatus: String {
+
+    case available
+    case active
+    case preparing
+    case billing
+    case reserved
+
+    var color: Color {
+        switch self {
+        case .available: .green
+        case .active: .blue
+        case .preparing: .purple
+        case .billing: .orange
+        case .reserved: .gray
+        }
+    }
+
+    var title: String {
+        rawValue.capitalized
+    }
 }

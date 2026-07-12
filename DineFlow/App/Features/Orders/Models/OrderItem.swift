@@ -6,3 +6,21 @@
 //
 
 import Foundation
+
+struct OrderItem: Identifiable {
+
+    let id: UUID
+    let menuItem: MenuItem
+
+    var quantity: Int
+
+    init(
+        id: UUID = UUID(),
+        menuItem: MenuItem,
+        quantity: Int = 1
+    ) {
+        self.id = id
+        self.menuItem = menuItem
+        self.quantity = quantity
+    }
+}

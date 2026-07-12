@@ -11,23 +11,40 @@ struct OrderView: View {
 
     let table: Table
 
+    @State private var menuViewModel = MenuViewModel()
+    @State private var orderViewModel: OrderViewModel
+
+    init(table: Table) {
+        self.table = table
+        _orderViewModel = State(
+            initialValue: OrderViewModel(table: table)
+        )
+    }
+
     var body: some View {
-        VStack(spacing: 24) {
 
-            Text("🍽️")
-                .font(.system(size: 60))
+        ScrollView {
 
-            Text("Table \(table.number)")
-                .font(.largeTitle.bold())
+            VStack(spacing: AppSpacing.large) {
 
-            Text("Order Screen")
-                .font(.title2)
-                .foregroundStyle(.secondary)
+                CategoryBar(viewModel: menuViewModel)
 
-            Spacer()
+                MenuList(viewModel: menuViewModel) { item in
+                    orderViewModel.add(item)
+                }
+
+                // Temporary Debug Panel
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Items: \(orderViewModel.order.totalItems)")
+                    Text(CurrencyFormatter.format(orderViewModel.order.totalAmount))
+                }
+                .padding()
+                .cardStyle()
+                .padding(.horizontal)
+            }
+            .padding(.top)
         }
-        .padding()
-        .navigationTitle("Order")
+        .navigationTitle("Table \(table.number)")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -38,9 +55,9 @@ struct OrderView: View {
             table: Table(
                 number: 7,
                 guestCount: 4,
-                totalAmount: 1280,
-                elapsedMinutes: 18,
-                status: .active
+                totalAmount: 0,
+                elapsedMinutes: 0,
+                status: .available
             )
         )
     }
