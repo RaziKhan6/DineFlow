@@ -10,11 +10,13 @@ import Observation
 
 @Observable
 final class OrderViewModel {
-
+    
+    let table: Table
     private(set) var order: Order
 
     init(table: Table) {
-        order = Order(tableID: table.id)
+        self.table = table
+        self.order = Order(tableID: table.id)
     }
 
     func add(_ menuItem: MenuItem) {
@@ -75,5 +77,10 @@ final class OrderViewModel {
         } else {
             order.items.remove(at: index)
         }
+    }
+    
+    func sendToKitchen() {
+
+        order.status = .sentToKitchen
     }
 }

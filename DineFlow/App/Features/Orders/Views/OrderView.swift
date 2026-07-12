@@ -13,7 +13,8 @@ struct OrderView: View {
 
     @State private var menuViewModel = MenuViewModel()
     @State private var orderViewModel: OrderViewModel
-
+    @State private var showOrderSheet = false
+    
     init(table: Table) {
         self.table = table
         _orderViewModel = State(
@@ -41,20 +42,33 @@ struct OrderView: View {
                         orderViewModel.decrease(menuItem: item)
                     }
                 )
-
-                // Temporary Debug Panel
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Items: \(orderViewModel.order.totalItems)")
-                    Text(CurrencyFormatter.format(orderViewModel.order.totalAmount))
-                }
-                .padding()
-                .cardStyle()
-                .padding(.horizontal)
             }
             .padding(.top)
         }
         .navigationTitle("Table \(table.number)")
         .navigationBarTitleDisplayMode(.inline)
+        .safeAreaInset(edge: .bottom) {
+
+            if orderViewModel.order.totalItems > 0 {
+
+                BottomOrderBar(
+                    itemCount: orderViewModel.order.totalItems,
+                    total: orderViewModel.order.totalAmount
+                ) {
+                    showOrderSheet = true
+                }
+                .padding(.horizontal)
+                .padding(.bottom, AppSpacing.small)
+                .sheet(isPresented: $showOrderSheet) {
+                    OrderSheet(
+                        table: table,
+                        viewModel: orderViewModel
+                    )
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
+                }
+            }
+        }
     }
 }
 

@@ -11,6 +11,7 @@ struct Order: Identifiable {
 
     let id: UUID
     let tableID: UUID
+    var status: OrderStatus = .draft
 
     var items: [OrderItem]
 
@@ -34,6 +35,18 @@ struct Order: Identifiable {
         items.reduce(0) {
             $0 + $1.quantity
         }
+    }
+    
+    var subtotal: Double {
+        totalAmount
+    }
+
+    var gst: Double {
+        subtotal * 0.05
+    }
+
+    var grandTotal: Double {
+        subtotal + gst
     }
 }
 
