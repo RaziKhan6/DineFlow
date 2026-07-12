@@ -11,7 +11,7 @@ import SwiftUI
 struct DineFlowApp: App {
     var body: some Scene {
         WindowGroup {
-            TablesView()
+            RootTabView()
         }
     }
 }
