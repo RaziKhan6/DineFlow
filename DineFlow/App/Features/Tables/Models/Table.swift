@@ -11,9 +11,9 @@ struct Table: Identifiable, Hashable {
     let id: UUID
     let number: Int
     let guestCount: Int
-    let totalAmount: Double
+    var totalAmount: Double
     let elapsedMinutes: Int
-    let status: TableStatus
+    var status: TableStatus
 
     init(
         id: UUID = UUID(),

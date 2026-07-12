@@ -9,7 +9,8 @@ import SwiftUI
 
 struct KitchenView: View {
 
-    @State private var viewModel = KitchenViewModel()
+    @Environment(RestaurantStore.self)
+    private var store
 
     var body: some View {
 
@@ -19,7 +20,7 @@ struct KitchenView: View {
 
                 LazyVStack(spacing: AppSpacing.large) {
 
-                    ForEach(viewModel.tickets) { ticket in
+                    ForEach(store.kitchenTickets) { ticket in
 
                         KitchenTicketCard(ticket: ticket)
                     }

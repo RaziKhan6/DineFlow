@@ -13,10 +13,11 @@ final class OrderViewModel {
     
     let table: Table
     private(set) var order: Order
+    
+    init(table: Table, order: Order) {
 
-    init(table: Table) {
         self.table = table
-        self.order = Order(tableID: table.id)
+        self.order = order
     }
 
     func add(_ menuItem: MenuItem) {
@@ -79,8 +80,7 @@ final class OrderViewModel {
         }
     }
     
-    func sendToKitchen() {
-
+    func markAsSentToKitchen() {
         order.status = .sentToKitchen
     }
 }

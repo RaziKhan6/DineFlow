@@ -12,6 +12,8 @@ struct OrderSheet: View {
     let table: Table
     @Bindable var viewModel: OrderViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(RestaurantStore.self)
+    private var store
 
     var body: some View {
 
@@ -59,7 +61,10 @@ struct OrderSheet: View {
                     total: viewModel.order.grandTotal,
                     itemCount: viewModel.order.totalItems
                 ) {
-                    viewModel.sendToKitchen()
+                    store.sendToKitchen(
+                        orderViewModel: viewModel,
+                        table: table
+                    )
                     dismiss()
                 }
             }

@@ -19,31 +19,31 @@ enum SampleTables {
         ),
         Table(
             number: 2,
-            guestCount: 4,
-            totalAmount: 1280,
-            elapsedMinutes: 18,
-            status: .preparing
+            guestCount: 0,
+            totalAmount: 0,
+            elapsedMinutes: 0,
+            status: .available
         ),
         Table(
             number: 3,
-            guestCount: 2,
-            totalAmount: 560,
-            elapsedMinutes: 7,
-            status: .active
+            guestCount: 0,
+            totalAmount: 0,
+            elapsedMinutes: 0,
+            status: .available
         ),
         Table(
             number: 4,
-            guestCount: 6,
-            totalAmount: 2450,
-            elapsedMinutes: 25,
-            status: .billing
+            guestCount: 0,
+            totalAmount: 0,
+            elapsedMinutes: 0,
+            status: .available
         ),
         Table(
             number: 5,
             guestCount: 0,
             totalAmount: 0,
             elapsedMinutes: 0,
-            status: .reserved
+            status: .available
         )
     ]
 }

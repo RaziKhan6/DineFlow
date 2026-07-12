@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TablesView: View {
-
-    @State private var viewModel = TablesViewModel()
+    
+    @Environment(RestaurantStore.self)
+    private var store
 
     private let columns = [
         GridItem(.flexible(), spacing: AppSpacing.medium)
@@ -19,9 +20,12 @@ struct TablesView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: AppSpacing.large) {
-                    ForEach(viewModel.tables) { table in
+                    ForEach(store.tables) { table in
                         NavigationLink {
-                            OrderView(table: table)
+                            OrderView(
+                                table: table,
+                                orderViewModel: store.orderViewModel(for: table)
+                            )
                         } label: {
                             TableCard(table: table)
                         }

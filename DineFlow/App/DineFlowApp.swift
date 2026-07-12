@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct DineFlowApp: App {
+
+    @State private var store = RestaurantStore()
+
     var body: some Scene {
+
         WindowGroup {
+
             RootTabView()
+                .environment(store)
         }
     }
 }

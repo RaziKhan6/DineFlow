@@ -9,17 +9,20 @@ import SwiftUI
 
 struct OrderView: View {
 
+    @Environment(RestaurantStore.self)
+    private var store
     let table: Table
+    @Bindable var orderViewModel: OrderViewModel
 
     @State private var menuViewModel = MenuViewModel()
-    @State private var orderViewModel: OrderViewModel
     @State private var showOrderSheet = false
-    
-    init(table: Table) {
+        
+    init(
+        table: Table,
+        orderViewModel: OrderViewModel
+    ) {
         self.table = table
-        _orderViewModel = State(
-            initialValue: OrderViewModel(table: table)
-        )
+        self.orderViewModel = orderViewModel
     }
 
     var body: some View {
@@ -36,10 +39,22 @@ struct OrderView: View {
                         orderViewModel.quantity(for: item)
                     },
                     onIncrease: { item in
+
                         orderViewModel.add(item)
+
+                        store.updateTable(
+                            table,
+                            totalAmount: orderViewModel.order.grandTotal
+                        )
                     },
                     onDecrease: { item in
+
                         orderViewModel.decrease(menuItem: item)
+
+                        store.updateTable(
+                            table,
+                            totalAmount: orderViewModel.order.grandTotal
+                        )
                     }
                 )
             }
@@ -73,14 +88,22 @@ struct OrderView: View {
 }
 
 #Preview {
-    NavigationStack {
+    let table = Table(
+        number: 7,
+        guestCount: 4,
+        totalAmount: 0,
+        elapsedMinutes: 0,
+        status: .available
+    )
+
+    let order = Order(tableID: table.id)
+
+    return NavigationStack {
         OrderView(
-            table: Table(
-                number: 7,
-                guestCount: 4,
-                totalAmount: 0,
-                elapsedMinutes: 0,
-                status: .available
+            table: table,
+            orderViewModel: OrderViewModel(
+                table: table,
+                order: order
             )
         )
     }
