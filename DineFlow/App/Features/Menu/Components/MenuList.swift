@@ -11,7 +11,9 @@ struct MenuList: View {
 
     @Bindable var viewModel: MenuViewModel
 
-    var onAdd: (MenuItem) -> Void
+    let quantity: (MenuItem) -> Int
+    let onIncrease: (MenuItem) -> Void
+    let onDecrease: (MenuItem) -> Void
 
     var body: some View {
 
@@ -19,9 +21,16 @@ struct MenuList: View {
 
             ForEach(viewModel.filteredItems) { item in
 
-                MenuItemRow(item: item) {
-                    onAdd(item)
-                }
+                MenuItemRow(
+                    item: item,
+                    quantity: quantity(item),
+                    onIncrease: {
+                        onIncrease(item)
+                    },
+                    onDecrease: {
+                        onDecrease(item)
+                    }
+                )
             }
         }
         .padding(.horizontal)

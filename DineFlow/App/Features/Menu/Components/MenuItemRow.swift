@@ -10,7 +10,11 @@ import SwiftUI
 struct MenuItemRow: View {
 
     let item: MenuItem
-    var onAdd: (() -> Void)?
+
+    let quantity: Int
+
+    let onIncrease: () -> Void
+    let onDecrease: () -> Void
 
     var body: some View {
 
@@ -31,20 +35,11 @@ struct MenuItemRow: View {
 
             Spacer()
 
-            Button {
-
-                onAdd?()
-
-            } label: {
-
-                Image(systemName: "plus")
-                    .font(.headline)
-                    .frame(width: 34, height: 34)
-                    .background(AppColor.primaryText)
-                    .foregroundStyle(.white)
-                    .clipShape(Circle())
-            }
-            .buttonStyle(.plain)
+            QuantityStepper(
+                quantity: quantity,
+                onIncrease: onIncrease,
+                onDecrease: onDecrease
+            )
         }
         .padding()
         .cardStyle()

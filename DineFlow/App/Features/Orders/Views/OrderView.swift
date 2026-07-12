@@ -29,9 +29,18 @@ struct OrderView: View {
 
                 CategoryBar(viewModel: menuViewModel)
 
-                MenuList(viewModel: menuViewModel) { item in
-                    orderViewModel.add(item)
-                }
+                MenuList(
+                    viewModel: menuViewModel,
+                    quantity: { item in
+                        orderViewModel.quantity(for: item)
+                    },
+                    onIncrease: { item in
+                        orderViewModel.add(item)
+                    },
+                    onDecrease: { item in
+                        orderViewModel.decrease(menuItem: item)
+                    }
+                )
 
                 // Temporary Debug Panel
                 VStack(alignment: .leading, spacing: 8) {
