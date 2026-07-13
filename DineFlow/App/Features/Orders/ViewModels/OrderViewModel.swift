@@ -13,6 +13,9 @@ final class OrderViewModel {
     
     let table: Table
     private(set) var order: Order
+    var isLocked: Bool {
+        order.status == .sentToKitchen
+    }
     
     init(table: Table, order: Order) {
 
@@ -20,7 +23,11 @@ final class OrderViewModel {
         self.order = order
     }
 
-    func add(_ menuItem: MenuItem) {
+    func add(_ menuItem: MenuItem) -> Bool {
+
+        guard !isLocked else {
+            return false
+        }
 
         if let index = order.items.firstIndex(where: {
             $0.menuItem.id == menuItem.id
@@ -34,17 +41,37 @@ final class OrderViewModel {
                 OrderItem(menuItem: menuItem)
             )
         }
+
+        return true
     }
     
-    func quantity(for menuItem: MenuItem) -> Int {
+    func decrease(menuItem: MenuItem) -> Bool {
 
-        order.items.first(where: {
+        guard !isLocked else {
+            return false
+        }
+
+        guard let index = order.items.firstIndex(where: {
             $0.menuItem.id == menuItem.id
-        })?.quantity ?? 0
+        }) else {
+            return false
+        }
+
+        if order.items[index].quantity > 1 {
+            order.items[index].quantity -= 1
+        } else {
+            order.items.remove(at: index)
+        }
+
+        return true
     }
     
     func increaseQuantity(for item: OrderItem) {
 
+        guard !isLocked else {
+                return
+            }
+        
         guard let index = order.items.firstIndex(where: {
             $0.id == item.id
         }) else { return }
@@ -53,6 +80,10 @@ final class OrderViewModel {
     }
 
     func decreaseQuantity(for item: OrderItem) {
+        
+        guard !isLocked else {
+                return
+            }
 
         guard let index = order.items.firstIndex(where: {
             $0.id == item.id
@@ -64,20 +95,12 @@ final class OrderViewModel {
             order.items[index].quantity -= 1
         }
     }
-    
-    func decrease(menuItem: MenuItem) {
+        
+    func quantity(for menuItem: MenuItem) -> Int {
 
-        guard let index = order.items.firstIndex(where: {
+        order.items.first(where: {
             $0.menuItem.id == menuItem.id
-        }) else {
-            return
-        }
-
-        if order.items[index].quantity > 1 {
-            order.items[index].quantity -= 1
-        } else {
-            order.items.remove(at: index)
-        }
+        })?.quantity ?? 0
     }
     
     func markAsSentToKitchen() {

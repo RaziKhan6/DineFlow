@@ -13,6 +13,7 @@ struct OrderView: View {
     private var store
     let table: Table
     @Bindable var orderViewModel: OrderViewModel
+    @Environment(\.dismiss) private var dismiss
 
     @State private var menuViewModel = MenuViewModel()
     @State private var showOrderSheet = false
@@ -39,22 +40,22 @@ struct OrderView: View {
                         orderViewModel.quantity(for: item)
                     },
                     onIncrease: { item in
-
-                        orderViewModel.add(item)
-
-                        store.updateTable(
-                            table,
-                            totalAmount: orderViewModel.order.grandTotal
-                        )
+                        
+                        if orderViewModel.add(item) {
+                            store.updateTable(
+                                table,
+                                totalAmount: orderViewModel.order.grandTotal
+                            )
+                        }
                     },
                     onDecrease: { item in
-
-                        orderViewModel.decrease(menuItem: item)
-
-                        store.updateTable(
-                            table,
-                            totalAmount: orderViewModel.order.grandTotal
-                        )
+                        
+                        if orderViewModel.decrease(menuItem: item) {
+                            store.updateTable(
+                                table,
+                                totalAmount: orderViewModel.order.grandTotal
+                            )
+                        }
                     }
                 )
             }
@@ -77,6 +78,9 @@ struct OrderView: View {
                 .sheet(isPresented: $showOrderSheet) {
                     OrderSheet(
                         table: table,
+                        onOrderSent: {
+                            dismiss()
+                        },
                         viewModel: orderViewModel
                     )
                     .presentationDetents([.medium, .large])

@@ -10,6 +10,7 @@ import SwiftUI
 struct OrderSheet: View {
 
     let table: Table
+    let onOrderSent: () -> Void
     @Bindable var viewModel: OrderViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(RestaurantStore.self)
@@ -66,6 +67,7 @@ struct OrderSheet: View {
                         table: table
                     )
                     dismiss()
+                    onOrderSent()
                 }
             }
         }
