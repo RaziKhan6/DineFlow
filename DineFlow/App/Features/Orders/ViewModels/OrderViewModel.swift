@@ -65,37 +65,45 @@ final class OrderViewModel {
 
         return true
     }
-    
-    func increaseQuantity(for item: OrderItem) {
+        
+    func increaseQuantity(for item: OrderItem) -> Bool {
 
         guard !isLocked else {
-                return
-            }
-        
+            return false
+        }
+
         guard let index = order.items.firstIndex(where: {
             $0.id == item.id
-        }) else { return }
+        }) else {
+            return false
+        }
 
         order.items[index].quantity += 1
+
+        return true
     }
 
-    func decreaseQuantity(for item: OrderItem) {
-        
+    func decreaseQuantity(for item: OrderItem) -> Bool {
+
         guard !isLocked else {
-                return
-            }
+            return false
+        }
 
         guard let index = order.items.firstIndex(where: {
             $0.id == item.id
-        }) else { return }
+        }) else {
+            return false
+        }
 
         if order.items[index].quantity == 1 {
             order.items.remove(at: index)
         } else {
             order.items[index].quantity -= 1
         }
+
+        return true
     }
-        
+    
     func quantity(for menuItem: MenuItem) -> Int {
 
         order.items.first(where: {

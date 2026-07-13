@@ -40,10 +40,24 @@ struct OrderSheet: View {
                         OrderItemRow(
                             item: item,
                             onIncrease: {
-                                viewModel.increaseQuantity(for: item)
+
+                                if viewModel.increaseQuantity(for: item) {
+
+                                    store.updateTable(
+                                        table,
+                                        totalAmount: viewModel.order.grandTotal
+                                    )
+                                }
                             },
                             onDecrease: {
-                                viewModel.decreaseQuantity(for: item)
+
+                                if viewModel.decreaseQuantity(for: item) {
+
+                                    store.updateTable(
+                                        table,
+                                        totalAmount: viewModel.order.grandTotal
+                                    )
+                                }
                             }
                         )
                     }
