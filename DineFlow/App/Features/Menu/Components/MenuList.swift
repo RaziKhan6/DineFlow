@@ -14,23 +14,35 @@ struct MenuList: View {
     let quantity: (MenuItem) -> Int
     let onIncrease: (MenuItem) -> Void
     let onDecrease: (MenuItem) -> Void
-
+    
     var body: some View {
 
         LazyVStack(spacing: AppSpacing.medium) {
 
-            ForEach(viewModel.filteredItems) { item in
+            if viewModel.filteredItems.isEmpty {
 
-                MenuItemRow(
-                    item: item,
-                    quantity: quantity(item),
-                    onIncrease: {
-                        onIncrease(item)
-                    },
-                    onDecrease: {
-                        onDecrease(item)
-                    }
+                ContentUnavailableView(
+                    "No menu items found",
+                    systemImage: "magnifyingglass",
+                    description: Text("Try another search.")
                 )
+                .padding(.top, 40)
+
+            } else {
+
+                ForEach(viewModel.filteredItems) { item in
+
+                    MenuItemRow(
+                        item: item,
+                        quantity: quantity(item),
+                        onIncrease: {
+                            onIncrease(item)
+                        },
+                        onDecrease: {
+                            onDecrease(item)
+                        }
+                    )
+                }
             }
         }
         .padding(.horizontal)

@@ -33,7 +33,33 @@ struct OrderView: View {
             VStack(spacing: AppSpacing.large) {
 
                 CategoryBar(viewModel: menuViewModel)
+                
+                HStack {
 
+                    Image(systemName: "magnifyingglass")
+                        .foregroundStyle(.secondary)
+
+                    TextField("Search menu...", text: $menuViewModel.searchText)
+
+                    if !menuViewModel.searchText.isEmpty {
+
+                        Button {
+
+                            menuViewModel.searchText = ""
+
+                        } label: {
+
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .background(Color(.systemGray6))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.horizontal)
+                
                 MenuList(
                     viewModel: menuViewModel,
                     quantity: { item in

@@ -41,6 +41,10 @@
 		B71117EF3003F93B00245273 /* KitchenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117EE3003F93B00245273 /* KitchenView.swift */; };
 		B71117F23003F96500245273 /* KitchenTicketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117F13003F96500245273 /* KitchenTicketCard.swift */; };
 		B71117F53003FB3A00245273 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117F43003FB3A00245273 /* RootTabView.swift */; };
+		B71117F830076C2200245273 /* BillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117F730076C2200245273 /* BillingView.swift */; };
+		B71117FA30076C2F00245273 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117F930076C2F00245273 /* PaymentButton.swift */; };
+		B71117FC30076C3A00245273 /* BillItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117FB30076C3A00245273 /* BillItemRow.swift */; };
+		B71117FF3007706500245273 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117FE3007706500245273 /* PaymentMethod.swift */; };
 		B721C95E300293EC00C58487 /* DineFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95D300293EC00C58487 /* DineFlowApp.swift */; };
 		B721C960300293EC00C58487 /* TablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95F300293EC00C58487 /* TablesView.swift */; };
 		B721C962300293ED00C58487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B721C961300293ED00C58487 /* Assets.xcassets */; };
@@ -116,6 +120,10 @@
 		B71117EE3003F93B00245273 /* KitchenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenView.swift; sourceTree = "<group>"; };
 		B71117F13003F96500245273 /* KitchenTicketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenTicketCard.swift; sourceTree = "<group>"; };
 		B71117F43003FB3A00245273 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		B71117F730076C2200245273 /* BillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView.swift; sourceTree = "<group>"; };
+		B71117F930076C2F00245273 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
+		B71117FB30076C3A00245273 /* BillItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemRow.swift; sourceTree = "<group>"; };
+		B71117FE3007706500245273 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		B721C95A300293EC00C58487 /* DineFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DineFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B721C95D300293EC00C58487 /* DineFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineFlowApp.swift; sourceTree = "<group>"; };
 		B721C95F300293EC00C58487 /* TablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesView.swift; sourceTree = "<group>"; };
@@ -381,6 +389,25 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
+		B71117F630076C0C00245273 /* Billing */ = {
+			isa = PBXGroup;
+			children = (
+				B71117F730076C2200245273 /* BillingView.swift */,
+				B71117FD3007705200245273 /* Models */,
+				B71117F930076C2F00245273 /* PaymentButton.swift */,
+				B71117FB30076C3A00245273 /* BillItemRow.swift */,
+			);
+			path = Billing;
+			sourceTree = "<group>";
+		};
+		B71117FD3007705200245273 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B71117FE3007706500245273 /* PaymentMethod.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B721C951300293EC00C58487 = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +495,7 @@
 		B721C9913002948F00C58487 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				B71117F630076C0C00245273 /* Billing */,
 				B71117E03003F5B000245273 /* Kitchen */,
 				B721C993300294BA00C58487 /* Tables */,
 				B71117983002C35B00245273 /* Orders */,
@@ -713,6 +741,7 @@
 				B71117EA3003F87B00245273 /* KitchenViewModel.swift in Sources */,
 				B71117E53003F7A100245273 /* KitchenTicketStatus.swift in Sources */,
 				B71117B43002C87600245273 /* MenuViewModel.swift in Sources */,
+				B71117FA30076C2F00245273 /* PaymentButton.swift in Sources */,
 				B71117DF3003F42200245273 /* SampleTables.swift in Sources */,
 				B721C9B830029D3400C58487 /* PrimaryButton.swift in Sources */,
 				B71117E23003F5C000245273 /* KitchenTicket.swift in Sources */,
@@ -748,12 +777,15 @@
 				B721C9B030029C4A00C58487 /* AppTypography.swift in Sources */,
 				B71117A43002C51500245273 /* OrderItem.swift in Sources */,
 				B71117D1300395C200245273 /* OrderSheet.swift in Sources */,
+				B71117FC30076C3A00245273 /* BillItemRow.swift in Sources */,
 				B71117C130035F1100245273 /* MenuList.swift in Sources */,
 				B71117D93003C78400245273 /* OrderStatus.swift in Sources */,
 				B721C9B230029C6E00C58487 /* AppColor.swift in Sources */,
 				B71117BF30035EE600245273 /* MenuItemRow.swift in Sources */,
 				B71117AE3002C82400245273 /* Category.swift in Sources */,
 				B71117BD30035EAE00245273 /* VegIndicator.swift in Sources */,
+				B71117FF3007706500245273 /* PaymentMethod.swift in Sources */,
+				B71117F830076C2200245273 /* BillingView.swift in Sources */,
 				B71117BB30035DFF00245273 /* CategoryBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

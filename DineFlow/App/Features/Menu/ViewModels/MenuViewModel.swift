@@ -15,6 +15,8 @@ final class MenuViewModel {
     let menuItems = SampleMenu.menuItems
 
     var selectedCategory: Category?
+    
+    var searchText = ""
 
     init() {
         selectedCategory = categories.first
@@ -22,13 +24,27 @@ final class MenuViewModel {
 
     var filteredItems: [MenuItem] {
 
-        guard let selectedCategory else {
-            return menuItems
+        var items = menuItems
+
+        if let selectedCategory {
+            items = items.filter {
+                $0.categoryID == selectedCategory.id
+            }
         }
 
-        return menuItems.filter {
-            $0.categoryID == selectedCategory.id
+        if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+
+            items = items.filter {
+
+                $0.name
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                    .localizedCaseInsensitiveContains(
+                        searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+                    )
+            }
         }
+
+        return items
     }
 
     func selectCategory(_ category: Category) {

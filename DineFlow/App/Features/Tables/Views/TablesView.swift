@@ -19,20 +19,43 @@ struct TablesView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: AppSpacing.large) {
-                    ForEach(store.tables) { table in
-                        NavigationLink {
-                            OrderView(
-                                table: table,
-                                orderViewModel: store.orderViewModel(for: table)
-                            )
-                        } label: {
-                            TableCard(table: table)
+                if store.tables.isEmpty {
+                    ContentUnavailableView(
+                        "No tables available",
+                        systemImage: "table.furniture",
+                        description: Text("Please add a table.")
+                    )
+                    .padding(.top, 80)
+
+                } else {
+                    LazyVGrid(columns: columns, spacing: AppSpacing.large) {
+                        ForEach(store.tables) { table in
+                            NavigationLink {
+
+                                if table.status == .billing {
+
+                                    BillingView(
+                                        table: table,
+                                        orderViewModel: store.orderViewModel(for: table)
+                                    )
+
+                                } else {
+
+                                    OrderView(
+                                        table: table,
+                                        orderViewModel: store.orderViewModel(for: table)
+                                    )
+                                }
+
+                            } label: {
+
+                                TableCard(table: table)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
                     }
+                    .padding(AppSpacing.large)
                 }
-                .padding(AppSpacing.large)
             }
             .navigationTitle("Tables")
         }

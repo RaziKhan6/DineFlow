@@ -73,7 +73,7 @@ final class RestaurantStore {
             tableNumber: table.number,
             items: orderViewModel.order.items,
             createdAt: .now,
-            status: .preparing
+            status: .pending
         )
 
         kitchenTickets.append(ticket)
@@ -97,5 +97,47 @@ final class RestaurantStore {
         orderViewModels[table.id] = vm
 
         return vm
+    }
+    
+    func markTicketReady(_ ticket: KitchenTicket) {
+
+        guard let ticketIndex = kitchenTickets.firstIndex(where: {
+            $0.id == ticket.id
+        }) else {
+            return
+        }
+
+        kitchenTickets[ticketIndex].status = .ready
+
+        guard let tableIndex = tables.firstIndex(where: {
+            $0.number == ticket.tableNumber
+        }) else {
+            return
+        }
+
+        tables[tableIndex].status = .billing
+    }
+    
+    func completePayment(for table: Table) {
+
+        guard let tableIndex = tables.firstIndex(where: {
+            $0.id == table.id
+        }) else {
+            return
+        }
+
+        // Reset table
+        tables[tableIndex].status = .available
+        tables[tableIndex].guestCount = 0
+        tables[tableIndex].totalAmount = 0
+        tables[tableIndex].elapsedMinutes = 0
+
+        // Remove kitchen tickets
+        kitchenTickets.removeAll {
+            $0.tableNumber == table.number
+        }
+
+        // Remove order
+        orderViewModels.removeValue(forKey: table.id)
     }
 }

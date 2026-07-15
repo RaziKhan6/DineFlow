@@ -10,9 +10,9 @@ import Foundation
 struct Table: Identifiable, Hashable {
     let id: UUID
     let number: Int
-    let guestCount: Int
+    var guestCount: Int
     var totalAmount: Double
-    let elapsedMinutes: Int
+    var elapsedMinutes: Int
     var status: TableStatus
 
     init(

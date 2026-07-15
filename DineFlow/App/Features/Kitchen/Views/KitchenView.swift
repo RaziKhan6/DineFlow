@@ -18,14 +18,25 @@ struct KitchenView: View {
 
             ScrollView {
 
-                LazyVStack(spacing: AppSpacing.large) {
+                if store.kitchenTickets.isEmpty {
 
-                    ForEach(store.kitchenTickets) { ticket in
+                    ContentUnavailableView(
+                        "No kitchen orders",
+                        systemImage: "frying.pan",
+                        description: Text("New KOTs will appear here.")
+                    )
+                    .padding(.top, 80)
 
-                        KitchenTicketCard(ticket: ticket)
+                } else {
+
+                    LazyVStack(spacing: AppSpacing.large) {
+
+                        ForEach(store.kitchenTickets) { ticket in
+                            KitchenTicketCard(ticket: ticket)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
             .navigationTitle("Kitchen")
         }

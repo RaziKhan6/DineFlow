@@ -10,6 +10,8 @@ import SwiftUI
 struct KitchenTicketCard: View {
 
     let ticket: KitchenTicket
+    @Environment(RestaurantStore.self)
+    private var store
 
     var body: some View {
 
@@ -33,7 +35,11 @@ struct KitchenTicketCard: View {
                     .font(.caption.bold())
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
-                    .background(.orange.opacity(0.15))
+                    .background(
+                        ticket.status == .ready
+                            ? .green.opacity(0.15)
+                            : .orange.opacity(0.15)
+                    )
                     .clipShape(Capsule())
             }
 
@@ -63,10 +69,19 @@ struct KitchenTicketCard: View {
 
                 Spacer()
 
-                Button("Ready") {
+                if ticket.status == .pending {
 
+                    Button("Mark Ready") {
+
+                        store.markTicketReady(ticket)
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                } else {
+
+                    Label("Ready", systemImage: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
                 }
-                .buttonStyle(.borderedProminent)
             }
         }
         .padding()
