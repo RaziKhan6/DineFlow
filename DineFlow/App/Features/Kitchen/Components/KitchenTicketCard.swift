@@ -9,7 +9,9 @@ import SwiftUI
 
 struct KitchenTicketCard: View {
 
+    
     let ticket: KitchenTicket
+    @State private var now = Date()
     @Environment(RestaurantStore.self)
     private var store
 
@@ -62,10 +64,22 @@ struct KitchenTicketCard: View {
 
             HStack {
 
-                Image(systemName: "clock")
-
-                Text(ticket.createdAt,
-                     style: .time)
+                Image(systemName: "clock.badge")
+                
+                Text(
+                    DurationFormatter.string(
+                        from: ticket.createdAt,
+                        now: now
+                    )
+                )
+                .monospacedDigit()
+                .fontWeight(.semibold)
+                .foregroundStyle(
+                    DurationFormatter.color(
+                        from: ticket.createdAt,
+                        now: now
+                    )
+                )
 
                 Spacer()
 
@@ -84,6 +98,15 @@ struct KitchenTicketCard: View {
                 }
             }
         }
+        .onReceive(
+                   Timer.publish(every: 1,
+                                 on: .main,
+                                 in: .common)
+                       .autoconnect()
+               ) { value in
+
+                   now = value
+               }
         .padding()
         .cardStyle()
     }

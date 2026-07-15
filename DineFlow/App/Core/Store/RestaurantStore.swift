@@ -73,6 +73,7 @@ final class RestaurantStore {
             tableNumber: table.number,
             items: orderViewModel.order.items,
             createdAt: .now,
+            completedAt: nil,
             status: .pending
         )
 

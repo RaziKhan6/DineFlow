@@ -45,6 +45,7 @@
 		B71117FA30076C2F00245273 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117F930076C2F00245273 /* PaymentButton.swift */; };
 		B71117FC30076C3A00245273 /* BillItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117FB30076C3A00245273 /* BillItemRow.swift */; };
 		B71117FF3007706500245273 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117FE3007706500245273 /* PaymentMethod.swift */; };
+		B7111802300785FD00245273 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7111801300785FD00245273 /* DurationFormatter.swift */; };
 		B721C95E300293EC00C58487 /* DineFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95D300293EC00C58487 /* DineFlowApp.swift */; };
 		B721C960300293EC00C58487 /* TablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95F300293EC00C58487 /* TablesView.swift */; };
 		B721C962300293ED00C58487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B721C961300293ED00C58487 /* Assets.xcassets */; };
@@ -124,6 +125,7 @@
 		B71117F930076C2F00245273 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
 		B71117FB30076C3A00245273 /* BillItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemRow.swift; sourceTree = "<group>"; };
 		B71117FE3007706500245273 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		B7111801300785FD00245273 /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
 		B721C95A300293EC00C58487 /* DineFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DineFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B721C95D300293EC00C58487 /* DineFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineFlowApp.swift; sourceTree = "<group>"; };
 		B721C95F300293EC00C58487 /* TablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesView.swift; sourceTree = "<group>"; };
@@ -408,6 +410,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		B7111800300785EE00245273 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B7111801300785FD00245273 /* DurationFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		B721C951300293EC00C58487 = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +490,7 @@
 		B721C9883002943100C58487 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B7111800300785EE00245273 /* Helpers */,
 				B71117EB3003F8C400245273 /* Services */,
 				B71117DA3003F39C00245273 /* Store */,
 				B721C9A13002961B00C58487 /* Components */,
@@ -770,6 +781,7 @@
 				B71117C33003608C00245273 /* Utilities.swift in Sources */,
 				B71117D53003A0B900245273 /* OrderTotalsView.swift in Sources */,
 				B721C9B430029C9300C58487 /* StatusBadge.swift in Sources */,
+				B7111802300785FD00245273 /* DurationFormatter.swift in Sources */,
 				B71117F53003FB3A00245273 /* RootTabView.swift in Sources */,
 				B721C9C43002B6C800C58487 /* View+Shadow.swift in Sources */,
 				B721C9BE30029E1A00C58487 /* TableStatus.swift in Sources */,

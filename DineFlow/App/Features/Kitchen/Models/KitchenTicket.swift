@@ -18,6 +18,9 @@ struct KitchenTicket: Identifiable {
     let items: [OrderItem]
 
     let createdAt: Date
+    
+    var completedAt: Date?
 
     var status: KitchenTicketStatus
+    
 }
