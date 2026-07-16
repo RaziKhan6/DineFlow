@@ -25,7 +25,27 @@ struct TableCard: View {
         .padding(AppSpacing.large)
         .frame(maxWidth: .infinity)
         .frame(height: 200)
-        .cardStyle()
+//        .cardStyle()
+        .background(
+            table.status == .ready
+                ? Color.green.opacity(0.08)
+                : Color(.systemBackground)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: AppRadius.large))
+        .overlay(
+            RoundedRectangle(cornerRadius: AppRadius.large)
+                .stroke(
+                    table.status == .ready
+                        ? Color.green.opacity(0.3)
+                        : Color.clear,
+                    lineWidth: 2
+                )
+        )
+        .shadow(
+            color: .black.opacity(0.08),
+            radius: 8,
+            y: 4
+        )
     }
     
     // MARK: - Subviews
@@ -52,10 +72,27 @@ struct TableCard: View {
     }
     
     private var statusView: some View {
-        StatusBadge(
-            title: table.status.title,
-            color: table.status.color
-        )
+
+        Group {
+
+            if table.status == .ready {
+
+                Label("READY TO SERVE", systemImage: "fork.knife.circle.fill")
+                    .font(AppTypography.badge.weight(.bold))
+                    .foregroundStyle(.green)
+                    .padding(.horizontal, AppSpacing.medium)
+                    .padding(.vertical, AppSpacing.small)
+                    .background(Color.green.opacity(0.15))
+                    .clipShape(Capsule())
+
+            } else {
+
+                StatusBadge(
+                    title: table.status.title,
+                    color: table.status.color
+                )
+            }
+        }
     }
 }
 
