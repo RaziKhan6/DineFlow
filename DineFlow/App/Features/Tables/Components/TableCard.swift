@@ -17,6 +17,14 @@ struct TableCard: View {
     
     var body: some View {
         VStack(spacing: AppSpacing.medium) {
+            if table.status == .ready {
+                HStack(spacing: 6) {
+                    Image(systemName: "bell.badge.fill")
+                    Text("Food Ready")
+                }
+                .font(.caption.weight(.bold))
+                .foregroundStyle(.green)
+            }
             titleView
             amountView
             infoView
@@ -24,28 +32,24 @@ struct TableCard: View {
         }
         .padding(AppSpacing.large)
         .frame(maxWidth: .infinity)
-        .frame(height: 200)
-//        .cardStyle()
-        .background(
-            table.status == .ready
-                ? Color.green.opacity(0.08)
-                : Color(.systemBackground)
-        )
-        .clipShape(RoundedRectangle(cornerRadius: AppRadius.large))
-        .overlay(
-            RoundedRectangle(cornerRadius: AppRadius.large)
-                .stroke(
-                    table.status == .ready
-                        ? Color.green.opacity(0.3)
-                        : Color.clear,
-                    lineWidth: 2
-                )
-        )
-        .shadow(
-            color: .black.opacity(0.08),
-            radius: 8,
-            y: 4
-        )
+        .frame(height: table.status == .ready ? 240 : 200)
+        .cardStyle()
+        .overlay {
+
+            if table.status == .ready {
+
+                RoundedRectangle(cornerRadius: AppRadius.large)
+                    .stroke(.green.opacity(0.5), lineWidth: 2)
+            }
+        }
+        .background {
+
+            if table.status == .ready {
+
+                RoundedRectangle(cornerRadius: AppRadius.large)
+                    .fill(.green.opacity(0.06))
+            }
+        }
     }
     
     // MARK: - Subviews
