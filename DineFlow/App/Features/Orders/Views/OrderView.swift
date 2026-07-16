@@ -12,6 +12,9 @@ struct OrderView: View {
     @Environment(RestaurantStore.self)
     private var store
     let table: Table
+    private var currentTable: Table {
+        store.tables.first(where: { $0.id == table.id }) ?? table
+    }
     @Bindable var orderViewModel: OrderViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -91,7 +94,22 @@ struct OrderView: View {
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) {
 
-            if orderViewModel.order.totalItems > 0 {
+            if currentTable.status == .ready {
+                Button {
+
+                    store.markTableServed(table)
+                    dismiss()
+
+                } label: {
+
+                    Label("Serve Food", systemImage: "fork.knife")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(.horizontal)
+                .padding(.bottom, AppSpacing.small)
+
+            } else if orderViewModel.order.totalItems > 0 {
 
                 BottomOrderBar(
                     itemCount: orderViewModel.order.totalItems,
@@ -114,6 +132,7 @@ struct OrderView: View {
                 }
             }
         }
+        
     }
 }
 

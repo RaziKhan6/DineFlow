@@ -83,13 +83,12 @@ struct BillingView: View {
         }
         .navigationTitle("Billing")
         .navigationBarTitleDisplayMode(.inline)
-        .confirmationDialog(
-            "Complete Payment?",
+        .alert(
+            "Complete Payment",
             isPresented: Binding(
                 get: { selectedPaymentMethod != nil },
                 set: { if !$0 { selectedPaymentMethod = nil } }
-            ),
-            titleVisibility: .visible
+            )
         ) {
 
             if let method = selectedPaymentMethod {
@@ -112,6 +111,13 @@ struct BillingView: View {
                 selectedPaymentMethod = nil
             }
         }
+    message: {
+
+        if let method = selectedPaymentMethod {
+
+            Text("Receive payment via \(method.rawValue)?")
+        }
+    }
         .overlay {
 
             if showPaymentSuccess {

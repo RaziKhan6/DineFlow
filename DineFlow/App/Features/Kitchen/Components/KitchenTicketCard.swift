@@ -35,12 +35,15 @@ struct KitchenTicketCard: View {
 
                 Text(ticket.status.rawValue)
                     .font(.caption.bold())
+                    .foregroundStyle(
+                        ticket.status == .ready ? .green : .purple
+                    )
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(
                         ticket.status == .ready
-                            ? .green.opacity(0.15)
-                            : .orange.opacity(0.15)
+                            ? Color.green.opacity(0.15)
+                            : Color.purple.opacity(0.15)
                     )
                     .clipShape(Capsule())
             }
@@ -66,10 +69,12 @@ struct KitchenTicketCard: View {
 
                 Image(systemName: "clock.badge")
                 
+                let endTime = ticket.completedAt ?? now
+                
                 Text(
                     DurationFormatter.string(
                         from: ticket.createdAt,
-                        now: now
+                        now: endTime
                     )
                 )
                 .monospacedDigit()
@@ -77,13 +82,13 @@ struct KitchenTicketCard: View {
                 .foregroundStyle(
                     DurationFormatter.color(
                         from: ticket.createdAt,
-                        now: now
+                        now: endTime
                     )
                 )
 
                 Spacer()
 
-                if ticket.status == .pending {
+                if ticket.status == .preparing {
 
                     Button("Mark Ready") {
 
@@ -94,6 +99,7 @@ struct KitchenTicketCard: View {
                 } else {
 
                     Label("Ready", systemImage: "checkmark.circle.fill")
+                        .font(.headline)
                         .foregroundStyle(.green)
                 }
             }

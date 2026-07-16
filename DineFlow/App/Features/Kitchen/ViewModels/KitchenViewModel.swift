@@ -22,7 +22,7 @@ final class KitchenViewModel {
                     OrderItem(menuItem: SampleMenu.menuItems[1])
                 ],
                 createdAt: .now,
-                status: .pending
+                status: .preparing
             )
         ]
     }
@@ -38,7 +38,7 @@ final class KitchenViewModel {
             tableNumber: table.number,
             items: order.items,
             createdAt: Date(),
-            status: .pending
+            status: .preparing
         )
 
         tickets.append(ticket)

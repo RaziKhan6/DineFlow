@@ -9,8 +9,6 @@ import Foundation
 
 enum KitchenTicketStatus: String, Codable {
 
-    case pending = "Pending"
-
     case preparing = "Preparing"
 
     case ready = "Ready"

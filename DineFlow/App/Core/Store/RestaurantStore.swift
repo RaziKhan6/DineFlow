@@ -74,7 +74,7 @@ final class RestaurantStore {
             items: orderViewModel.order.items,
             createdAt: .now,
             completedAt: nil,
-            status: .pending
+            status: .preparing
         )
 
         kitchenTickets.append(ticket)
@@ -108,6 +108,7 @@ final class RestaurantStore {
             return
         }
 
+        kitchenTickets[ticketIndex].completedAt = .now
         kitchenTickets[ticketIndex].status = .ready
 
         guard let tableIndex = tables.firstIndex(where: {
@@ -116,7 +117,7 @@ final class RestaurantStore {
             return
         }
 
-        tables[tableIndex].status = .billing
+        tables[tableIndex].status = .ready
     }
     
     func completePayment(for table: Table) {
@@ -140,5 +141,16 @@ final class RestaurantStore {
 
         // Remove order
         orderViewModels.removeValue(forKey: table.id)
+    }
+    
+    func markTableServed(_ table: Table) {
+
+        guard let index = tables.firstIndex(where: {
+            $0.id == table.id
+        }) else {
+            return
+        }
+
+        tables[index].status = .billing
     }
 }
