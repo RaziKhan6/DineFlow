@@ -20,10 +20,11 @@ struct TableCard: View {
             if table.status == .ready {
                 HStack(spacing: 6) {
                     Image(systemName: "bell.badge.fill")
-                    Text("Food Ready")
+                    Text("READY FOR SERVICE")
                 }
-                .font(.caption.weight(.bold))
+                .font(.caption2.weight(.bold))
                 .foregroundStyle(.green)
+                .textCase(.uppercase)
             }
             titleView
             amountView
@@ -39,7 +40,7 @@ struct TableCard: View {
             if table.status == .ready {
 
                 RoundedRectangle(cornerRadius: AppRadius.large)
-                    .stroke(.green.opacity(0.5), lineWidth: 2)
+                    .stroke(.green.opacity(0.35), lineWidth: 1.5)
             }
         }
         .background {
@@ -81,14 +82,13 @@ struct TableCard: View {
 
             if table.status == .ready {
 
-                Label("READY TO SERVE", systemImage: "fork.knife.circle.fill")
+                Label("SERVE FOOD", systemImage: "fork.knife.circle.fill")
                     .font(AppTypography.badge.weight(.bold))
                     .foregroundStyle(.green)
                     .padding(.horizontal, AppSpacing.medium)
                     .padding(.vertical, AppSpacing.small)
                     .background(Color.green.opacity(0.15))
                     .clipShape(Capsule())
-
             } else {
 
                 StatusBadge(

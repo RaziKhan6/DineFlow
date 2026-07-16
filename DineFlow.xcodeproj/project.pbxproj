@@ -46,6 +46,7 @@
 		B71117FC30076C3A00245273 /* BillItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117FB30076C3A00245273 /* BillItemRow.swift */; };
 		B71117FF3007706500245273 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71117FE3007706500245273 /* PaymentMethod.swift */; };
 		B7111802300785FD00245273 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7111801300785FD00245273 /* DurationFormatter.swift */; };
+		B7111804300936DF00245273 /* GuestCountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7111803300936DF00245273 /* GuestCountSheet.swift */; };
 		B721C95E300293EC00C58487 /* DineFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95D300293EC00C58487 /* DineFlowApp.swift */; };
 		B721C960300293EC00C58487 /* TablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C95F300293EC00C58487 /* TablesView.swift */; };
 		B721C962300293ED00C58487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B721C961300293ED00C58487 /* Assets.xcassets */; };
@@ -126,6 +127,7 @@
 		B71117FB30076C3A00245273 /* BillItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemRow.swift; sourceTree = "<group>"; };
 		B71117FE3007706500245273 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		B7111801300785FD00245273 /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
+		B7111803300936DF00245273 /* GuestCountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCountSheet.swift; sourceTree = "<group>"; };
 		B721C95A300293EC00C58487 /* DineFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DineFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B721C95D300293EC00C58487 /* DineFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineFlowApp.swift; sourceTree = "<group>"; };
 		B721C95F300293EC00C58487 /* TablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesView.swift; sourceTree = "<group>"; };
@@ -418,6 +420,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		B71118053009371900245273 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				B7111803300936DF00245273 /* GuestCountSheet.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
 		B721C951300293EC00C58487 = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +528,7 @@
 		B721C993300294BA00C58487 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
+				B71118053009371900245273 /* Sheets */,
 				B721C99A3002950B00C58487 /* Components */,
 				B721C9AA3002978A00C58487 /* Models */,
 				B721C998300294E500C58487 /* ViewModels */,
@@ -762,6 +773,7 @@
 				B71117A03002C4FD00245273 /* MenuCategory.swift in Sources */,
 				B71117B63002C88500245273 /* MenuView.swift in Sources */,
 				B71117B930035DCD00245273 /* CategoryChip.swift in Sources */,
+				B7111804300936DF00245273 /* GuestCountSheet.swift in Sources */,
 				B71117C5300361E500245273 /* Order.swift in Sources */,
 				B71117CB30036A7600245273 /* OrderSummary.swift in Sources */,
 				B721C960300293EC00C58487 /* TablesView.swift in Sources */,

@@ -42,6 +42,22 @@ final class RestaurantStore {
         }
     }
     
+    func startOrder(
+        for table: Table,
+        guestCount: Int
+    ) {
+
+        guard let index = tables.firstIndex(where: {
+            $0.id == table.id
+        }) else {
+            return
+        }
+
+        tables[index].guestCount = guestCount
+        tables[index].status = .active
+        tables[index].elapsedMinutes = 0
+    }
+    
     func sendToKitchen(
         orderViewModel: OrderViewModel,
         table: Table
