@@ -141,7 +141,7 @@ struct OrderView: View {
         number: 7,
         guestCount: 4,
         totalAmount: 0,
-        elapsedMinutes: 0,
+        startedAt: nil,
         status: .available
     )
 

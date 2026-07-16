@@ -11,6 +11,7 @@ struct TableCard: View {
     
     // MARK: - Properties
     
+    @State private var now = Date()
     let table: Table
     
     // MARK: - Body
@@ -34,6 +35,16 @@ struct TableCard: View {
         .padding(AppSpacing.large)
         .frame(maxWidth: .infinity)
         .frame(height: table.status == .ready ? 240 : 200)
+        .onReceive(
+            Timer.publish(
+                every: 1,
+                on: .main,
+                in: .common
+            ).autoconnect()
+        ) { value in
+
+            now = value
+        }
         .cardStyle()
         .overlay {
 
@@ -66,12 +77,14 @@ struct TableCard: View {
     }
     
     private var infoView: some View {
+
         HStack {
+
             Label("\(table.guestCount)", systemImage: "person.2.fill")
-            
+
             Spacer()
-            
-            Label("\(table.elapsedMinutes)m", systemImage: "clock")
+
+            Label(tableDuration, systemImage: "clock")
         }
         .font(AppTypography.body)
     }
@@ -98,6 +111,17 @@ struct TableCard: View {
             }
         }
     }
+    
+    private var tableDuration: String {
+
+        guard let startedAt = table.startedAt else {
+            return "0 m"
+        }
+
+        let minutes = Int(now.timeIntervalSince(startedAt) / 60)
+
+        return "\(minutes) m"
+    }
 }
 
 // MARK: - Preview
@@ -108,7 +132,7 @@ struct TableCard: View {
             number: 7,
             guestCount: 4,
             totalAmount: 1280,
-            elapsedMinutes: 18,
+            startedAt: nil,
             status: .preparing
         )
     )

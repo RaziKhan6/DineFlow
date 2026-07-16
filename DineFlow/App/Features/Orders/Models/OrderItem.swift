@@ -13,14 +13,17 @@ struct OrderItem: Identifiable {
     let menuItem: MenuItem
 
     var quantity: Int
+    var isSentToKitchen = false
 
     init(
         id: UUID = UUID(),
         menuItem: MenuItem,
-        quantity: Int = 1
+        quantity: Int = 1,
+        isSentToKitchen: Bool = false
     ) {
         self.id = id
         self.menuItem = menuItem
         self.quantity = quantity
+        self.isSentToKitchen = isSentToKitchen
     }
 }

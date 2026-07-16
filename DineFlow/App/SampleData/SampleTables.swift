@@ -14,35 +14,35 @@ enum SampleTables {
             number: 1,
             guestCount: 0,
             totalAmount: 0,
-            elapsedMinutes: 0,
+            startedAt: nil,
             status: .available
         ),
         Table(
             number: 2,
             guestCount: 0,
             totalAmount: 0,
-            elapsedMinutes: 0,
+            startedAt: nil,
             status: .available
         ),
         Table(
             number: 3,
             guestCount: 0,
             totalAmount: 0,
-            elapsedMinutes: 0,
+            startedAt: nil,
             status: .available
         ),
         Table(
             number: 4,
             guestCount: 0,
             totalAmount: 0,
-            elapsedMinutes: 0,
+            startedAt: nil,
             status: .available
         ),
         Table(
             number: 5,
             guestCount: 0,
             totalAmount: 0,
-            elapsedMinutes: 0,
+            startedAt: nil,
             status: .available
         )
     ]

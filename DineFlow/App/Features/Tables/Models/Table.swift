@@ -12,7 +12,7 @@ struct Table: Identifiable, Hashable {
     let number: Int
     var guestCount: Int
     var totalAmount: Double
-    var elapsedMinutes: Int
+    var startedAt: Date?
     var status: TableStatus
 
     init(
@@ -20,14 +20,14 @@ struct Table: Identifiable, Hashable {
         number: Int,
         guestCount: Int,
         totalAmount: Double,
-        elapsedMinutes: Int,
+        startedAt: Date?,
         status: TableStatus
     ) {
         self.id = id
         self.number = number
         self.guestCount = guestCount
         self.totalAmount = totalAmount
-        self.elapsedMinutes = elapsedMinutes
+        self.startedAt = startedAt
         self.status = status
     }
 }

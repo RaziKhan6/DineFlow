@@ -36,14 +36,14 @@ struct KitchenTicketCard: View {
                 Text(ticket.status.rawValue)
                     .font(.caption.bold())
                     .foregroundStyle(
-                        ticket.status == .ready ? .green : .purple
+                        ticket.status == .ready ? .green : .orange
                     )
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(
                         ticket.status == .ready
                             ? Color.green.opacity(0.15)
-                            : Color.purple.opacity(0.15)
+                            : Color.orange.opacity(0.15)
                     )
                     .clipShape(Capsule())
             }

@@ -55,7 +55,7 @@ final class RestaurantStore {
 
         tables[index].guestCount = guestCount
         tables[index].status = .active
-        tables[index].elapsedMinutes = 0
+        tables[index].startedAt = .now
     }
     
     func sendToKitchen(
@@ -148,7 +148,7 @@ final class RestaurantStore {
         tables[tableIndex].status = .available
         tables[tableIndex].guestCount = 0
         tables[tableIndex].totalAmount = 0
-        tables[tableIndex].elapsedMinutes = 0
+        tables[tableIndex].startedAt = nil
 
         // Remove kitchen tickets
         kitchenTickets.removeAll {
