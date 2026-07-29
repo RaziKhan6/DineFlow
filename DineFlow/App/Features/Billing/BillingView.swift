@@ -446,14 +446,17 @@ struct BillingView: View {
             .locale(Locale(identifier: "en_IN"))
         )
     }
-
+    
     private func completePayment() {
 
-        guard selectedPaymentMethod != nil else {
+        guard let selectedPaymentMethod else {
             return
         }
 
-        store.completePayment(for: table)
+        store.completePayment(
+            for: table,
+            method: selectedPaymentMethod
+        )
 
         dismiss()
     }
@@ -494,3 +497,4 @@ struct BillingView: View {
         .environment(RestaurantStore())
     }
 }
+

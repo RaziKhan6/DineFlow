@@ -19,6 +19,8 @@ final class RestaurantStore {
 
     var orderViewModels: [UUID: OrderViewModel] = [:]
 
+    var completedOrders: [CompletedOrder] = []
+
     private var nextTicketNumber = 1001
 
     // MARK: - Table
@@ -203,6 +205,62 @@ final class RestaurantStore {
             return
         }
 
+        completePaymentReset(tableIndex: tableIndex, table: table)
+    }
+    
+    func completePayment(
+        for table: Table,
+        method: PaymentMethod
+    ) {
+        guard let tableIndex = tableIndex(for: table) else {
+            return
+        }
+
+        guard tables[tableIndex].status == .billing else {
+            return
+        }
+
+        if let orderViewModel = orderViewModels[table.id] {
+            let order = orderViewModel.order
+
+            let completedItems = order.items.map { orderItem in
+                CompletedOrder.Item(
+                    id: orderItem.id,
+                    name: orderItem.menuItem.name,
+                    quantity: orderItem.quantity,
+                    unitPrice: orderItem.menuItem.price,
+                    lineTotal: orderItem.menuItem.price * Double(orderItem.quantity)
+                )
+            }
+            
+            let completedOrder = CompletedOrder(
+                id: UUID(),
+                orderID: order.id,
+                tableID: table.id,
+                tableNumber: tables[tableIndex].number,
+                guestCount: tables[tableIndex].guestCount,
+                items: completedItems,
+                subtotal: order.subtotal,
+                gstAmount: order.gst,
+                grandTotal: order.grandTotal,
+                paymentMethod: method,
+                startedAt: nil,
+                completedAt: .now
+            )
+
+            completedOrders.append(completedOrder)
+        }
+
+        completePaymentReset(
+            tableIndex: tableIndex,
+            table: table
+        )
+    }
+
+    private func completePaymentReset(
+        tableIndex: Int,
+        table: Table
+    ) {
         tables[tableIndex].status = .available
         tables[tableIndex].guestCount = 0
         tables[tableIndex].totalAmount = 0

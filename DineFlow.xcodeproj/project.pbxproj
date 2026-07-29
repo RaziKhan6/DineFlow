@@ -69,6 +69,7 @@
 		B721C9C23002B10C00C58487 /* TablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C9C13002B10C00C58487 /* TablesViewModel.swift */; };
 		B721C9C43002B6C800C58487 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C9C33002B6C800C58487 /* View+Shadow.swift */; };
 		B721C9C63002B72000C58487 /* View+CardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721C9C53002B72000C58487 /* View+CardStyle.swift */; };
+		B78CD127301A61A700F7BE94 /* CompletedOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78CD126301A61A700F7BE94 /* CompletedOrder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		B78CD123301A51BA00F7BE94 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHANGELOG.md; sourceTree = "<group>"; };
 		B78CD124301A51D000F7BE94 /* UI_GUIDELINES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = UI_GUIDELINES.md; sourceTree = "<group>"; };
 		B78CD125301A57AA00F7BE94 /* TESTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TESTING.md; sourceTree = "<group>"; };
+		B78CD126301A61A700F7BE94 /* CompletedOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedOrder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				B71117DB3003F3AC00245273 /* RestaurantStore.swift */,
+				B78CD126301A61A700F7BE94 /* CompletedOrder.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				B71117B43002C87600245273 /* MenuViewModel.swift in Sources */,
 				B71117FA30076C2F00245273 /* PaymentButton.swift in Sources */,
 				B71117DF3003F42200245273 /* SampleTables.swift in Sources */,
+				B78CD127301A61A700F7BE94 /* CompletedOrder.swift in Sources */,
 				B721C9B830029D3400C58487 /* PrimaryButton.swift in Sources */,
 				B71117E23003F5C000245273 /* KitchenTicket.swift in Sources */,
 				B711179E3002C3F500245273 /* OrderView.swift in Sources */,
