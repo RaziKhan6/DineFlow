@@ -29,10 +29,27 @@ struct KitchenView: View {
 
                 } else {
 
-                    LazyVStack(spacing: AppSpacing.large) {
+                    LazyVStack(
+                        alignment: .leading,
+                        spacing: AppSpacing.large
+                    ) {
 
-                        ForEach(store.kitchenTickets) { ticket in
-                            KitchenTicketCard(ticket: ticket)
+                        if !preparingTickets.isEmpty {
+
+                            ticketSection(
+                                title: "Preparing",
+                                systemImage: "flame.fill",
+                                tickets: preparingTickets
+                            )
+                        }
+
+                        if !readyTickets.isEmpty {
+
+                            ticketSection(
+                                title: "Ready",
+                                systemImage: "checkmark.circle.fill",
+                                tickets: readyTickets
+                            )
                         }
                     }
                     .padding()
@@ -40,5 +57,69 @@ struct KitchenView: View {
             }
             .navigationTitle("Kitchen")
         }
+    }
+
+    // MARK: - Ticket Section
+
+    private func ticketSection(
+        title: String,
+        systemImage: String,
+        tickets: [KitchenTicket]
+    ) -> some View {
+
+        VStack(
+            alignment: .leading,
+            spacing: AppSpacing.medium
+        ) {
+
+            HStack {
+
+                Label(title, systemImage: systemImage)
+                    .font(AppTypography.body.weight(.semibold))
+
+                Spacer()
+
+                Text("\(tickets.count)")
+                    .font(AppTypography.badge)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(
+                        Color.secondary.opacity(0.12),
+                        in: Capsule()
+                    )
+            }
+
+            LazyVStack(spacing: AppSpacing.medium) {
+
+                ForEach(tickets) { ticket in
+                    KitchenTicketCard(ticket: ticket)
+                }
+            }
+        }
+    }
+
+    // MARK: - Sorted Tickets
+
+    private var preparingTickets: [KitchenTicket] {
+
+        store.kitchenTickets
+            .filter {
+                $0.status == .preparing
+            }
+            .sorted {
+                $0.createdAt < $1.createdAt
+            }
+    }
+
+    private var readyTickets: [KitchenTicket] {
+
+        store.kitchenTickets
+            .filter {
+                $0.status == .ready
+            }
+            .sorted {
+                $0.createdAt > $1.createdAt
+            }
     }
 }

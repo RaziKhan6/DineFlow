@@ -1,0 +1,56 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Xcode Cloud
+ci_scripts/
+ci_post_clone.sh
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Archives
+*.xcarchive
+
+# Coverage
+*.profdata
+*.gcda
+*.gcno
+
+# Environment files
+.env
+.env.*
+
+# Firebase (if added later)
+GoogleService-Info.plist
+
+# CocoaPods (if you ever use it)
+Pods/

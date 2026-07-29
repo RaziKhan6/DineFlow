@@ -13,7 +13,9 @@ struct OrderItem: Identifiable {
     let menuItem: MenuItem
 
     var quantity: Int
-    var isSentToKitchen = false
+
+    /// True once this item has been sent to the kitchen
+    var isSentToKitchen: Bool
 
     init(
         id: UUID = UUID(),

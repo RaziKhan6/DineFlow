@@ -50,9 +50,8 @@ struct OrderSummary: View {
                     Spacer()
 
                     Text(
-                        CurrencyFormatter.format(
-                            viewModel.order.totalAmount
-                        )
+                        viewModel.order.totalAmount,
+                        format: .currency(code: "INR")
                     )
                     .font(AppTypography.title)
                 }

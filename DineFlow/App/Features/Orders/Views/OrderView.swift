@@ -9,18 +9,51 @@ import SwiftUI
 
 struct OrderView: View {
 
+    // MARK: - Environment
+
     @Environment(RestaurantStore.self)
     private var store
+
+    @Environment(\.dismiss)
+    private var dismiss
+
+    // MARK: - Properties
+
     let table: Table
-    private var currentTable: Table {
-        store.tables.first(where: { $0.id == table.id }) ?? table
-    }
+
     @Bindable var orderViewModel: OrderViewModel
-    @Environment(\.dismiss) private var dismiss
 
     @State private var menuViewModel = MenuViewModel()
     @State private var showOrderSheet = false
-        
+
+    // MARK: - Computed Properties
+
+    private var currentTable: Table {
+        store.tables.first {
+            $0.id == table.id
+        } ?? table
+    }
+
+    private var pendingItemCount: Int {
+        orderViewModel.order.pendingItems.reduce(0) {
+            $0 + $1.quantity
+        }
+    }
+
+    private var pendingItemsTotal: Double {
+        orderViewModel.order.pendingItems.reduce(0) {
+            $0 + ($1.menuItem.price * Double($1.quantity))
+        }
+    }
+
+    private var pendingActionTitle: String {
+        pendingItemCount == 1
+            ? "Send 1 New Item"
+            : "Send \(pendingItemCount) New Items"
+    }
+
+    // MARK: - Initializer
+
     init(
         table: Table,
         orderViewModel: OrderViewModel
@@ -29,6 +62,8 @@ struct OrderView: View {
         self.orderViewModel = orderViewModel
     }
 
+    // MARK: - Body
+
     var body: some View {
 
         ScrollView {
@@ -36,54 +71,24 @@ struct OrderView: View {
             VStack(spacing: AppSpacing.large) {
 
                 CategoryBar(viewModel: menuViewModel)
-                
-                HStack {
 
-                    Image(systemName: "magnifyingglass")
-                        .foregroundStyle(.secondary)
+                searchBar
 
-                    TextField("Search menu...", text: $menuViewModel.searchText)
-
-                    if !menuViewModel.searchText.isEmpty {
-
-                        Button {
-
-                            menuViewModel.searchText = ""
-
-                        } label: {
-
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 10)
-                .background(Color(.systemGray6))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .padding(.horizontal)
-                
                 MenuList(
                     viewModel: menuViewModel,
                     quantity: { item in
                         orderViewModel.quantity(for: item)
                     },
                     onIncrease: { item in
-                        
+
                         if orderViewModel.add(item) {
-                            store.updateTable(
-                                table,
-                                totalAmount: orderViewModel.order.grandTotal
-                            )
+                            updateTableTotal()
                         }
                     },
                     onDecrease: { item in
-                        
+
                         if orderViewModel.decrease(menuItem: item) {
-                            store.updateTable(
-                                table,
-                                totalAmount: orderViewModel.order.grandTotal
-                            )
+                            updateTableTotal()
                         }
                     }
                 )
@@ -93,8 +98,66 @@ struct OrderView: View {
         .navigationTitle("Table \(table.number)")
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) {
+            bottomActionArea
+        }
+    }
 
-            if currentTable.status == .ready {
+    // MARK: - Search Bar
+
+    private var searchBar: some View {
+
+        HStack {
+
+            Image(systemName: "magnifyingglass")
+                .foregroundStyle(.secondary)
+
+            TextField(
+                "Search menu...",
+                text: $menuViewModel.searchText
+            )
+
+            if !menuViewModel.searchText.isEmpty {
+
+                Button {
+
+                    menuViewModel.searchText = ""
+
+                } label: {
+
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(Color(.systemGray6))
+        .clipShape(
+            RoundedRectangle(cornerRadius: 12)
+        )
+        .padding(.horizontal)
+    }
+
+    // MARK: - Bottom Actions
+
+    private var bottomActionArea: some View {
+
+        VStack(spacing: AppSpacing.small) {
+
+            if pendingItemCount > 0 {
+
+                BottomOrderBar(
+                    itemCount: pendingItemCount,
+                    total: pendingItemsTotal,
+                    actionTitle: pendingActionTitle
+                ) {
+                    showOrderSheet = true
+                }
+            }
+
+            if currentTable.status == .ready &&
+                pendingItemCount == 0 {
+
                 Button {
 
                     store.markTableServed(table)
@@ -102,41 +165,49 @@ struct OrderView: View {
 
                 } label: {
 
-                    Label("Serve Food", systemImage: "fork.knife")
-                        .frame(maxWidth: .infinity)
+                    Label(
+                        "Serve Food",
+                        systemImage: "fork.knife"
+                    )
+                    .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .padding(.horizontal)
-                .padding(.bottom, AppSpacing.small)
-
-            } else if orderViewModel.order.totalItems > 0 {
-
-                BottomOrderBar(
-                    itemCount: orderViewModel.order.totalItems,
-                    total: orderViewModel.order.totalAmount
-                ) {
-                    showOrderSheet = true
-                }
-                .padding(.horizontal)
-                .padding(.bottom, AppSpacing.small)
-                .sheet(isPresented: $showOrderSheet) {
-                    OrderSheet(
-                        table: table,
-                        onOrderSent: {
-                            dismiss()
-                        },
-                        viewModel: orderViewModel
-                    )
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
-                }
             }
         }
-        
+        .padding(.horizontal)
+        .padding(.bottom, AppSpacing.small)
+        .sheet(isPresented: $showOrderSheet) {
+
+            OrderSheet(
+                table: table,
+                onOrderSent: {
+                    dismiss()
+                },
+                viewModel: orderViewModel
+            )
+            .presentationDetents([
+                .medium,
+                .large
+            ])
+            .presentationDragIndicator(.visible)
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func updateTableTotal() {
+
+        store.updateTable(
+            table,
+            totalAmount: orderViewModel.order.grandTotal
+        )
     }
 }
 
+// MARK: - Preview
+
 #Preview {
+
     let table = Table(
         number: 7,
         guestCount: 4,
@@ -145,9 +216,12 @@ struct OrderView: View {
         status: .available
     )
 
-    let order = Order(tableID: table.id)
+    let order = Order(
+        tableID: table.id
+    )
 
     return NavigationStack {
+
         OrderView(
             table: table,
             orderViewModel: OrderViewModel(

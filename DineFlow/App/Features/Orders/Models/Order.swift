@@ -37,6 +37,14 @@ struct Order: Identifiable {
         }
     }
     
+    var sentItems: [OrderItem] {
+        items.filter { $0.isSentToKitchen }
+    }
+
+    var pendingItems: [OrderItem] {
+        items.filter { !$0.isSentToKitchen }
+    }
+    
     var subtotal: Double {
         totalAmount
     }

@@ -10,72 +10,82 @@ import Observation
 
 @Observable
 final class OrderViewModel {
-    
+
     let table: Table
     private(set) var order: Order
-    var isLocked: Bool {
-        order.status == .sentToKitchen
-    }
-    
-    init(table: Table, order: Order) {
 
+    init(
+        table: Table,
+        order: Order
+    ) {
         self.table = table
         self.order = order
     }
 
+    // MARK: - Menu actions
+
     func add(_ menuItem: MenuItem) -> Bool {
 
-        guard !isLocked else {
-            return false
-        }
-
+        // Only increase an item that has not yet been sent.
         if let index = order.items.firstIndex(where: {
-            $0.menuItem.id == menuItem.id
+            $0.menuItem.id == menuItem.id &&
+            !$0.isSentToKitchen
         }) {
 
             order.items[index].quantity += 1
 
         } else {
 
+            // A previously sent item must not be modified.
+            // Create a new pending item instead.
             order.items.append(
-                OrderItem(menuItem: menuItem)
+                OrderItem(
+                    menuItem: menuItem,
+                    isSentToKitchen: false
+                )
             )
         }
 
         return true
     }
-    
+
     func decrease(menuItem: MenuItem) -> Bool {
 
-        guard !isLocked else {
-            return false
-        }
-
+        // Only pending items can be reduced.
         guard let index = order.items.firstIndex(where: {
-            $0.menuItem.id == menuItem.id
+            $0.menuItem.id == menuItem.id &&
+            !$0.isSentToKitchen
         }) else {
             return false
         }
 
         if order.items[index].quantity > 1 {
+
             order.items[index].quantity -= 1
+
         } else {
+
             order.items.remove(at: index)
         }
 
         return true
     }
-        
-    func increaseQuantity(for item: OrderItem) -> Bool {
 
-        guard !isLocked else {
-            return false
-        }
+    // MARK: - Order sheet actions
+
+    func increaseQuantity(for item: OrderItem) -> Bool {
 
         guard let index = order.items.firstIndex(where: {
             $0.id == item.id
         }) else {
             return false
+        }
+
+        if order.items[index].isSentToKitchen {
+
+            // Do not modify a quantity already printed on a KOT.
+            // Add the extra quantity as a new pending item.
+            return add(order.items[index].menuItem)
         }
 
         order.items[index].quantity += 1
@@ -85,33 +95,61 @@ final class OrderViewModel {
 
     func decreaseQuantity(for item: OrderItem) -> Bool {
 
-        guard !isLocked else {
-            return false
-        }
-
         guard let index = order.items.firstIndex(where: {
-            $0.id == item.id
+            $0.id == item.id &&
+            !$0.isSentToKitchen
         }) else {
             return false
         }
 
-        if order.items[index].quantity == 1 {
-            order.items.remove(at: index)
-        } else {
+        if order.items[index].quantity > 1 {
+
             order.items[index].quantity -= 1
+
+        } else {
+
+            order.items.remove(at: index)
         }
 
         return true
     }
-    
+
+    // MARK: - Quantities
+
     func quantity(for menuItem: MenuItem) -> Int {
 
-        order.items.first(where: {
-            $0.menuItem.id == menuItem.id
-        })?.quantity ?? 0
+        order.items
+            .filter {
+                $0.menuItem.id == menuItem.id
+            }
+            .reduce(0) {
+                $0 + $1.quantity
+            }
     }
-    
-    func markAsSentToKitchen() {
+
+    func pendingQuantity(for menuItem: MenuItem) -> Int {
+
+        order.items
+            .filter {
+                $0.menuItem.id == menuItem.id &&
+                !$0.isSentToKitchen
+            }
+            .reduce(0) {
+                $0 + $1.quantity
+            }
+    }
+
+    // MARK: - Kitchen
+
+    func markPendingItemsAsSent() {
+
+        for index in order.items.indices {
+
+            if !order.items[index].isSentToKitchen {
+                order.items[index].isSentToKitchen = true
+            }
+        }
+
         order.status = .sentToKitchen
     }
 }

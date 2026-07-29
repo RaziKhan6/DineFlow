@@ -26,12 +26,10 @@ struct OrderItemCard: View {
                 Spacer()
 
                 Text(
-                    CurrencyFormatter.format(
-                        item.menuItem.price * Double(item.quantity)
-                    )
+                    item.menuItem.price * Double(item.quantity),
+                    format: .currency(code: "INR")
                 )
-                .font(AppTypography.body)
-                .fontWeight(.semibold)
+                .font(AppTypography.body.weight(.semibold))
             }
 
             HStack(spacing: 16) {
@@ -56,3 +54,4 @@ struct OrderItemCard: View {
         .cardStyle()
     }
 }
+
